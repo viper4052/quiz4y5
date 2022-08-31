@@ -11,11 +11,13 @@ template <class T>
 class Node {
     private:
         T *data;
+        Node *previous; // crea un puntero que sirva para apuntar al nodo anterior
         Node *next;
     
     public:
         Node() {
             data = NULL;
+            previous = NULL; // define que el nodo anterior apunte a nulo
             next = NULL;
         }
 
@@ -26,6 +28,10 @@ class Node {
 
         T* getData() {
             return data;
+        }
+
+        Node* getPrevious() { // getter del nodo anterior
+            return previous;
         }
 
         Node* getNext() {
