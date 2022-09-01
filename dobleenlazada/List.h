@@ -1,5 +1,7 @@
 #include "Node.h"
 #include "../eventos/event.h"
+#include <typeinfo>
+#include <iostream>
 
 #ifndef LIST 
 
@@ -30,6 +32,8 @@ class List {
 
             if (quantity>0) {
                 this->last->setNext(newNode);
+                //newNode->setPrev(this->last->data);
+                // cout << typeid(this->last).name();
             } else {
                 this->first = newNode;
             }
@@ -59,9 +63,9 @@ class List {
 
             if (pPosition<getSize()) {
                 while(pPosition>0) {
-                    searchFront = searchPosition->getPrev(); // busca el nodo previo del elemento que pase "searchPosition"
                     searchBehind = searchPosition;
                     searchPosition = searchPosition->getNext();
+                    //searchFront = searchPosition->getPrev(); // busca el nodo previo del elemento que pase "searchPosition"
                     pPosition--;
                 }
                 result = searchPosition->getData();
