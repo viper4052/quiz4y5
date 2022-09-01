@@ -30,8 +30,12 @@ class Node {
             return data;
         }
 
-        Node* getPrevious() { // getter del nodo anterior
+        Node* getPrevious() { // getter del nodo previo
             return previous;
+        }
+
+        Node* setPrevious(Node *pPreviousValue) {  // define que pueda configurarse que tenga un nodo previo
+            this->previous = pPreviousValue;
         }
 
         Node* getNext() {
