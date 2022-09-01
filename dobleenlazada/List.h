@@ -14,8 +14,8 @@ class List {
         int quantity;
         bool empty;
         Node<T> *searchPosition = NULL;
+        Node<T> *searchFront = NULL; // para que busque el elemento al frente cuando se mueve de adelante para atras
         Node<T> *searchBehind = NULL;
-        Node<T> *searchFront = NULL;
 
     public:
         List() {
@@ -30,7 +30,6 @@ class List {
 
             if (quantity>0) {
                 this->last->setNext(newNode);
-                this->last->setPrevious(this); // el ultimo de la lista, quien es el ultimo, tiene como previo a este nodo
             } else {
                 this->first = newNode;
             }
@@ -52,17 +51,17 @@ class List {
             return !quantity;
         }
 
-        T* find(int pPosition) { 
-            T* result = NULL; 
+        T* find(int pPosition) {
+            T* result = NULL;
             searchPosition = this->first;
-            searchFront = NULL;
+            searchFront = NULL;  // define en null lo que pueda retornar que es lo que hay al frente del nodo
             searchBehind = NULL;
 
             if (pPosition<getSize()) {
                 while(pPosition>0) {
+                    searchFront = searchPosition->getPrev(); // busca el nodo previo del elemento que pase "searchPosition"
                     searchBehind = searchPosition;
                     searchPosition = searchPosition->getNext();
-                    searchFront = searchPosition->getPrevious();
                     pPosition--;
                 }
                 result = searchPosition->getData();
@@ -80,10 +79,8 @@ class List {
                 T* result = find(pPosition);
                 
                 newNodo->setNext(searchPosition);
-                newNodo->setPrevious(searchPosition->getPrevious); // setea el anterior del newNodo como el anterior nodo que retorna la funcion searchPosition
                 if (searchBehind!=NULL) {
-                    searchBehind->setNext(newNodo); 
-                    searchFront->setPrevious(searchBehind->getNext());
+                    searchBehind->setNext(newNodo);
                 } else {
                     this->first = newNodo;
                 }
@@ -94,18 +91,17 @@ class List {
             }
         }
 
-        bool remove(int pPosition) { 
+        bool remove(int pPosition) {
             bool result = false;
             if (first!=NULL && pPosition<getSize()) {
                 Node<T> *search = first;
-                if (pPosition!=0) { 
+                if (pPosition!=0) {
                     T* data = find(pPosition);
 
                     searchBehind->setNext(searchPosition->getNext());
-                    searchFront->setPrevious(searchPosition->getPrevious());
-                    
+
                     if (searchPosition==last) {
-                        last = getPrevious(searchPosition);
+                        last = searchBehind;
                     }
                     searchPosition->setNext(NULL);
                 } else {

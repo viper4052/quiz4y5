@@ -11,40 +11,42 @@ template <class T>
 class Node {
     private:
         T *data;
-        Node *previous; // crea un puntero que sirva para apuntar al nodo anterior
+        Node *prev;
         Node *next;
     
     public:
         Node() {
             data = NULL;
-            previous = NULL; // define que el nodo anterior apunte a nulo
+            prev = NULL;
             next = NULL;
-        }
+        };
 
         Node(T *pData) {
             this->data = pData;
+            prev = NULL;
             next = NULL;
-        }
+        };
 
         T* getData() {
             return data;
-        }
+        };
 
-        Node* getPrevious() { // getter del nodo previo
-            return previous;
-        }
+        Node* getPrev() {
+            return prev;
+        };
 
-        Node* setPrevious(Node *pPreviousValue) {  // define que pueda configurarse que tenga un nodo previo
-            this->previous = pPreviousValue;
-        }
+        void setPrev(Node *pValue) {
+            this->setPrev = pValue;
+        };
 
         Node* getNext() {
             return next;
-        }
+        };
 
         void setNext(Node *pValue) {
             this->next = pValue;
-        }
+        };
+
 };
 
 #endif
