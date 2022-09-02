@@ -32,8 +32,8 @@ class List {
 
             if (quantity>0) {
                 this->last->setNext(newNode);
-                //newNode->setPrev(this->last->data);
-                // cout << typeid(this->last).name();
+                newNode->NULL;
+
             } else {
                 this->first = newNode;
             }
@@ -117,6 +117,6 @@ class List {
             }
             return result;
         } 
-};
+}; //test
 
 #endif
