@@ -2,6 +2,12 @@
 #include <string>
 #include <iostream>
 #include "../eventos/event.h"
+/*
+    Integrantes:
+    -Emmanuel Jose Matamoros Jimenez    2021040420 
+    -Carlos Jose Barrantes Cortes       2019065141
+*/
+
 
 using namespace std;
 
@@ -28,6 +34,12 @@ int main() {
     listB->add(new string("tercer mensaje de prueba"));
     listB->add(new string("cuarto mensaje de prueba"));
     listB->add(new string("quinto mensaje de prueba"));
+
+    // for(int i=0; i<listB->getSize(); i++) {
+    //     string *currentmsg = listB->find(i);
+    //     cout << *currentmsg << endl;
+    // }
+    // cout<< "====================================" <<endl;
 
     listB->remove(0);
     listB->remove(3);

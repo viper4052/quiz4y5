@@ -109,8 +109,8 @@ class List {
                     searchBehind->setNext(searchPosition->getNext());
                     searchBehind->setPrev(searchPosition->getPrev());
 
-                    // searchFront->setNext(searchBehind->getNext);       NO ESTOY SEGURO QUE FUNCIONE
-                    // searchFront->setPrev(searchPosition->getPrev());
+                    searchFront->setNext(searchPosition->getNext());
+                    searchFront->setPrev(searchPosition->getPrev());
 
                     if (searchPosition==last) {
                         last = searchBehind;
