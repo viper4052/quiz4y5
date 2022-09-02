@@ -32,7 +32,7 @@ class List {
 
             if (quantity>0) {
                 this->last->setNext(newNode);
-                newNode->NULL;
+                newNode->setPrev(this->last); // define el previo como el ultimo original de la lista
 
             } else {
                 this->first = newNode;
@@ -65,7 +65,7 @@ class List {
                 while(pPosition>0) {
                     searchBehind = searchPosition;
                     searchPosition = searchPosition->getNext();
-                    //searchFront = searchPosition->getPrev(); // busca el nodo previo del elemento que pase "searchPosition"
+                    searchFront = searchPosition->getPrev(); // busca el nodo previo del elemento que pase "searchPosition"
                     pPosition--;
                 }
                 result = searchPosition->getData();
@@ -83,8 +83,12 @@ class List {
                 T* result = find(pPosition);
                 
                 newNodo->setNext(searchPosition);
+                newNodo->setPrev(searchFront);
+
                 if (searchBehind!=NULL) {
                     searchBehind->setNext(newNodo);
+                    newNodo->setPrev(searchFront);
+                    
                 } else {
                     this->first = newNodo;
                 }
@@ -103,14 +107,20 @@ class List {
                     T* data = find(pPosition);
 
                     searchBehind->setNext(searchPosition->getNext());
+                    searchBehind->setPrev(searchPosition->getPrev());
+
+                    // searchFront->setNext(searchBehind->getNext);       NO ESTOY SEGURO QUE FUNCIONE
+                    // searchFront->setPrev(searchPosition->getPrev());
 
                     if (searchPosition==last) {
                         last = searchBehind;
                     }
                     searchPosition->setNext(NULL);
+                    searchPosition->setPrev(NULL);
                 } else {
                     first = first->getNext();
                     search->setNext(NULL);
+                    search->setPrev(NULL);
                     delete search;
                 }
                 quantity--;

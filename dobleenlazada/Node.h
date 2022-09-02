@@ -36,7 +36,7 @@ class Node {
         };
 
         void setPrev(Node *pValue) {
-            this->setPrev = pValue;
+            this->prev = pValue;
         };
 
         Node* getNext() {
